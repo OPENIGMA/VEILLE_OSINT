@@ -2,6 +2,9 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "veille-osint",
   "compatibility_date": "2026-11-26",
+  // Active l'URL publique https://veille-osint.<sous-domaine>.workers.dev
+  "workers_dev": true,
+  "preview_urls": true,
   // Site statique issu de `next build` (output: 'export')
   "assets": {
     "directory": "./out",
