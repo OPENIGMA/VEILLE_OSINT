@@ -1,0 +1,34 @@
+# dépendances
+node_modules/
+.pnp
+.pnp.js
+
+# build Next.js
+.next/
+out/
+
+# tests
+coverage/
+
+# env locaux (ne jamais committer de clés)
+.env
+.env*.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# divers
+.DS_Store
+*.pem
+*.tsbuildinfo
+next-env.d.ts
+
+# Cloudflare / Wrangler
+.wrangler/
+.dev.vars
+
+# Vercel (non utilisé)
+.vercel
