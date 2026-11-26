@@ -9,6 +9,11 @@ const config: Config = {
     './lib/**/*.{ts,tsx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '1rem',
+      screens: { '2xl': '1400px' },
+    },
     extend: {
       colors: {
         // Palette "Cyber Néon / Mission Control"
@@ -48,6 +53,10 @@ const config: Config = {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
         },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -67,37 +76,68 @@ const config: Config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      // Les intensités passent par --glow-opacity / --glow-strong :
+      // le mode "confort" (data-comfort="true") les réduit globalement.
       boxShadow: {
-        'glow-cyan': '0 0 20px rgba(0, 240, 255, 0.4)',
-        'glow-magenta': '0 0 20px rgba(255, 0, 229, 0.4)',
-        'glow-lime': '0 0 20px rgba(57, 255, 20, 0.4)',
-        'glow-amber': '0 0 20px rgba(255, 184, 0, 0.4)',
+        'glow-cyan': '0 0 20px rgb(0 240 255 / var(--glow-opacity))',
+        'glow-magenta': '0 0 20px rgb(255 0 229 / var(--glow-opacity))',
+        'glow-lime': '0 0 20px rgb(57 255 20 / var(--glow-opacity))',
+        'glow-amber': '0 0 20px rgb(255 184 0 / var(--glow-opacity))',
       },
       backgroundImage: {
+        // Grille cyberpunk (opacité 7 %, dans la plage demandée 5-10 %)
         'cyber-grid':
           'linear-gradient(rgba(0, 240, 255, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.07) 1px, transparent 1px)',
+        // Balayage radar (loader)
+        radar:
+          'conic-gradient(from 0deg, rgb(var(--neon, 0 240 255) / 0.5), transparent 25%)',
       },
       backgroundSize: {
         grid: '40px 40px',
       },
       keyframes: {
+        // Pulsation du halo (barre de recherche au focus, éléments actifs)
         'glow-pulse': {
-          '0%, 100%': { boxShadow: '0 0 10px rgba(0, 240, 255, 0.25)' },
-          '50%': { boxShadow: '0 0 24px rgba(0, 240, 255, 0.55)' },
+          '0%, 100%': {
+            boxShadow: '0 0 8px rgb(var(--neon, 0 240 255) / 0.25)',
+          },
+          '50%': {
+            boxShadow: '0 0 24px rgb(var(--neon, 0 240 255) / 0.6)',
+          },
         },
+        // Ligne de balayage (effet scanner)
         scan: {
           '0%': { transform: 'translateY(-100%)' },
           '100%': { transform: 'translateY(100%)' },
         },
+        // Radar : rotation du faisceau
+        'radar-sweep': {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
+        },
+        // Curseur de terminal
         blink: {
           '0%, 49%': { opacity: '1' },
           '50%, 100%': { opacity: '0' },
+        },
+        // Effet machine à écrire (à combiner avec overflow-hidden + whitespace-nowrap)
+        typewriter: {
+          from: { width: '0' },
+          to: { width: '100%' },
+        },
+        // Apparition des résultats
+        'fade-in-up': {
+          from: { opacity: '0', transform: 'translateY(8px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
         },
       },
       animation: {
         'glow-pulse': 'glow-pulse 2.4s ease-in-out infinite',
         scan: 'scan 3s linear infinite',
+        'radar-sweep': 'radar-sweep 2.4s linear infinite',
         blink: 'blink 1s steps(1) infinite',
+        typewriter: 'typewriter 2s steps(30, end) forwards',
+        'fade-in-up': 'fade-in-up 0.3s ease-out both',
       },
     },
   },

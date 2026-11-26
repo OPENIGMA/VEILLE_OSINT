@@ -9,6 +9,8 @@
     --foreground: 210 29% 93%; /* #E6EDF3 */
     --card: 222 43% 9%; /* #0F1420 */
     --card-foreground: 210 29% 93%;
+    --popover: 222 43% 9%;
+    --popover-foreground: 210 29% 93%;
     --primary: 184 100% 50%; /* #00F0FF cyan */
     --primary-foreground: 226 54% 7%;
     --secondary: 305 100% 50%; /* #FF00E5 magenta */
@@ -24,13 +26,15 @@
     --ring: 184 100% 50%;
     --radius: 0.5rem;
 
-    /* Intensité des néons (réduite par le mode "confort") */
+    /* Intensité des néons : normale et survol/actif (réduites en mode confort) */
     --glow-opacity: 0.4;
+    --glow-strong: 0.7;
   }
 
-  /* Mode "confort" : néons atténués (activé via data-comfort="true" sur <html>) */
+  /* Mode "confort" : néons atténués (data-comfort="true" sur <html>) */
   html[data-comfort='true'] {
-    --glow-opacity: 0.12;
+    --glow-opacity: 0.1;
+    --glow-strong: 0.2;
   }
 
   * {
@@ -43,7 +47,7 @@
 
   body {
     @apply bg-background font-sans text-foreground antialiased;
-    /* Grille cyberpunk en arrière-plan (opacité 5-10%) */
+    /* Grille cyberpunk en arrière-plan */
     background-image: theme('backgroundImage.cyber-grid');
     background-size: theme('backgroundSize.grid');
     background-attachment: fixed;
