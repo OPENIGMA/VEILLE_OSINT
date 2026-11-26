@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "veille-osint",
+  "compatibility_date": "2026-11-26",
+  // Site statique issu de `next build` (output: 'export')
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}
