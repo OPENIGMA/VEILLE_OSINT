@@ -3,9 +3,11 @@ import type { Metadata } from 'next';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';
 import './globals.css';
+import { AuthProvider } from '@/components/auth-provider';
+import { AppShell } from '@/components/app-shell';
 
 export const metadata: Metadata = {
-  title: 'veille-osint',
+  title: { default: 'veille-osint', template: '%s · veille-osint' },
   description:
     'Plateforme OSINT économique et territoriale : presse, données ouvertes, veille cyber et ingérences.',
 };
@@ -17,7 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className="dark">
-      <body>{children}</body>
+      <body>
+        <AuthProvider>
+          <AppShell>{children}</AppShell>
+        </AuthProvider>
+      </body>
     </html>
   );
 }

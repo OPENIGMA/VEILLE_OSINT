@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { CyberCard } from '@/components/ui/cyber-card';
 import { NeonButton } from '@/components/ui/neon-button';
 import { TerminalLoader } from '@/components/ui/terminal-loader';
-import { ComfortToggle } from './comfort-toggle';
+import { ComfortToggle } from '@/components/comfort-toggle';
 
 export const metadata: Metadata = {
   title: 'Design system — veille-osint',
@@ -23,7 +23,7 @@ const palette = [
 
 export default function DesignPage() {
   return (
-    <main className="container space-y-12 py-10">
+    <div className="space-y-12">
       <header className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="font-mono text-3xl font-bold text-cyber-cyan">
@@ -163,6 +163,6 @@ export default function DesignPage() {
           />
         </div>
       </section>
-    </main>
+    </div>
   );
 }
